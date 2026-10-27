@@ -18,7 +18,6 @@ namespace Quest1 {
 		u32 accum = 0;
 		for (const auto& count : problem) {
 			auto next = Internal::nextSquare(count);
-
 #ifdef _DEBUG
 			std::println("count: {}, nextSquare: {} ({}), diff: {}", count, next, next * next, (next * next) - count);
 #endif
