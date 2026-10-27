@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/" />
+  <Project Path="EverybodyCodes2026LordOfTheWings.vcxproj" Id="7204cb79-b09d-429a-b1bc-32e006116140">
+    <Build Solution="*|x86" Project="false" />
+  </Project>
+</Solution>
