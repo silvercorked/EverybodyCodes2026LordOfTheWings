@@ -94,7 +94,7 @@ auto [[nodiscard]] Quest2::solution2() -> u64 {
 	return accum;
 }
 
-auto [[nodiscard]] Quest2::solution3() -> u64 {
+auto [[nodiscard]] Quest2::solution3() -> u64 { // this is the same as p2 but the p3 file
 	Timer::Timer t{};
 	auto problem = parseFileCSV(readProblemFile(2026, 2, 3), " ") | std::ranges::views::transform(
 		[](const std::vector<std::string>& line) -> std::vector<Quest2::Internal::Group> {
