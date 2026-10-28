@@ -30,6 +30,9 @@
     <ClCompile Include="src\utils\FileReadUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\quests\quest2\q2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utils\Timer.hpp">
@@ -44,14 +47,20 @@
     <ClInclude Include="src\utils\PrimitiveTypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\quests\quest2\q2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="EverybodyCodes2026LordOfTheWings.slnx" />
     <None Include=".gitignore" />
+    <None Include="data\.gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\everybody_codes_e2026_q01_p1.txt" />
     <Text Include="data\everybody_codes_e2026_q01_p2.txt" />
     <Text Include="data\everybody_codes_e2026_q01_p3.txt" />
+    <Text Include="data\everybody_codes_e2026_q02_p1.txt" />
+    <Text Include="data\everybody_codes_e2026_q02_p2.txt" />
   </ItemGroup>
 </Project>

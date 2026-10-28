@@ -81,10 +81,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\quests\quest1\q1.cpp" />
     <ClCompile Include="src\quests\quest1\q1.hpp" />
+    <ClCompile Include="src\quests\quest2\q2.cpp" />
     <ClCompile Include="src\utils\FileReadUtils.cpp" />
     <ClCompile Include="src\utils\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\quests\quest2\q2.hpp" />
     <ClInclude Include="src\utils\Casts.hpp" />
     <ClInclude Include="src\utils\FileReadUtils.hpp" />
     <ClInclude Include="src\utils\PrimitiveTypes.hpp" />
@@ -92,12 +94,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="data\.gitignore" />
     <None Include="EverybodyCodes2026LordOfTheWings.slnx" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\everybody_codes_e2026_q01_p1.txt" />
     <Text Include="data\everybody_codes_e2026_q01_p2.txt" />
     <Text Include="data\everybody_codes_e2026_q01_p3.txt" />
+    <Text Include="data\everybody_codes_e2026_q02_p1.txt" />
+    <Text Include="data\everybody_codes_e2026_q02_p2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

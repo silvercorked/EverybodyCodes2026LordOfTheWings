@@ -37,13 +37,13 @@ namespace Timer {
 		template <Timer_Duration D = std::chrono::nanoseconds>
 		auto getElapsedSinceLastSet() const -> const std::string {
 			return prettyPrintTime(
-				Timer<T>::getTimePointDifferenceAs<D>(this->_curr, T::now())
+				Timer<T>::getTimePointDifferenceAs<std::chrono::nanoseconds>(this->_curr, T::now())
 			);
 		}
 		template <Timer_Duration D = std::chrono::nanoseconds>
 		auto getElapsedSinceConstruction() const -> const std::string {
 			return prettyPrintTime(
-				Timer<T>::getTimePointDifferenceAs<D>(this->_start, T::now())
+				Timer<T>::getTimePointDifferenceAs<std::chrono::nanoseconds>(this->_start, T::now())
 			);
 		}
 	};

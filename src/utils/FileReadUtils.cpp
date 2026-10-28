@@ -45,18 +45,18 @@ auto [[nodiscard]] FileReadUtils::readProblemFile(u32 year, u32 quest, u32 part)
 	throw std::runtime_error(problem.error());
 }
 
-auto [[nodiscard]] FileReadUtils::parseFileCSL(std::string_view fileContents) -> std::vector<std::string> {
+auto [[nodiscard]] FileReadUtils::parseFileCSL(std::string_view fileContents, std::string_view delim) -> std::vector<std::string> {
 	std::vector<std::string> out{};
-	for (const auto& value : fileContents | std::ranges::views::split(',')) {
+	for (const auto& value : fileContents | std::ranges::views::split(delim)) {
 		out.emplace_back(std::string_view(value));
 	}
 	return out;
 }
-auto [[nodiscard]] FileReadUtils::parseFileCSV(std::string_view fileContents) -> std::vector<std::vector<std::string>> {
+auto [[nodiscard]] FileReadUtils::parseFileCSV(std::string_view fileContents, std::string_view delimValue, std::string_view delimLine) -> std::vector<std::vector<std::string>> {
 	std::vector<std::vector<std::string>> out{};
-	for (const auto& line : fileContents | std::ranges::views::split('\n')) {
+	for (const auto& line : fileContents | std::ranges::views::split(delimLine)) {
 		out.emplace_back();
-		for (const auto& value : line | std::ranges::views::split(',')) {
+		for (const auto& value : line | std::ranges::views::split(delimValue)) {
 			out.back().emplace_back(std::string_view(value));
 		}
 	}

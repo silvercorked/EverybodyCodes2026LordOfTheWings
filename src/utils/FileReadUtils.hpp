@@ -15,6 +15,6 @@ namespace FileReadUtils {
 
 	auto [[nodiscard]] readProblemFile(u32 year, u32 quest, u32 part) -> std::string;
 	// comma-seperated list, csv but no newlines
-	auto [[nodiscard]] parseFileCSL(std::string_view fileContents) -> std::vector<std::string>;
-	auto [[nodiscard]] parseFileCSV(std::string_view fileContents) -> std::vector<std::vector<std::string>>;
+	auto [[nodiscard]] parseFileCSL(std::string_view fileContents, std::string_view = ",") -> std::vector<std::string>;
+	auto [[nodiscard]] parseFileCSV(std::string_view fileContents, std::string_view = ",", std::string_view = "\n")->std::vector<std::vector<std::string>>;
 }
