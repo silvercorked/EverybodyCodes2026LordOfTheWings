@@ -1,13 +1,13 @@
 
-#include "FileReadUtils.hpp"
+module Utils.FileReadUtils;
 
-#include <fstream>
-#include <sstream>
-#include <expected>
-#include <filesystem>
-#include <string>
-#include <ranges>
-#include <stdexcept>
+import <fstream>;
+import <sstream>;
+import <expected>;
+import <filesystem>;
+import <string>;
+import <ranges>;
+import <stdexcept>;
 
 auto [[nodiscard]] FileReadUtils::readFile(const std::filesystem::path& path) -> std::expected<std::string, std::string> {
 	std::ifstream file(path.c_str());
@@ -37,12 +37,8 @@ auto [[nodiscard]] FileReadUtils::readFileCSV(const std::filesystem::path& path)
 	return std::unexpected(fileOut.error());
 }
 
-auto [[nodiscard]] FileReadUtils::readProblemFile(u32 year, u32 quest, u32 part) -> std::string {
-	const auto problem = readFile(std::format("data/everybody_codes_e{}_q{:02d}_p{}.txt", year, quest, part));
-	if (problem.has_value()) {
-		return problem.value();
-	}
-	throw std::runtime_error(problem.error());
+auto [[nodiscard]] FileReadUtils::readProblemFile(u32 year, u32 quest, u32 part) -> std::expected<std::string, std::string> {
+	return readFile(std::format("data/everybody_codes_e{}_q{:02d}_p{}.txt", year, quest, part));
 }
 
 auto [[nodiscard]] FileReadUtils::parseFileCSL(std::string_view fileContents, std::string_view delim) -> std::vector<std::string> {
@@ -62,4 +58,3 @@ auto [[nodiscard]] FileReadUtils::parseFileCSV(std::string_view fileContents, st
 	}
 	return out;
 }
-

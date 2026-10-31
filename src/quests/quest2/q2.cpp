@@ -1,39 +1,44 @@
 
-#include "q2.hpp"
+module Quest2;
 
-#include "../../utils/FileReadUtils.hpp"
-#include "../../utils/Timer.hpp"
+import Utils;
 
-#include <ranges>
-#include <string>
-#include <print>
-#include <algorithm>
+#ifdef _DEBUG
+import <print>;
+#endif
+
+import <ranges>;
+import <string>;
+import <algorithm>;
 
 using namespace FileReadUtils;
 
-auto [[nodiscard]] Quest2::solution1() -> u32 {
-	Timer::Timer t{};
-	auto problem = parseFileCSV(readProblemFile(2026, 2, 1), " ") | std::ranges::views::transform(
-		[](const std::vector<std::string>& line) -> std::vector<Quest2::Internal::Group> {
-			return line | std::ranges::views::transform([](const std::string& value) -> Quest2::Internal::Group {
-				u32 firstVal = 0;
-				char curr = value.at(firstVal);
-				while (curr != '<' && curr != '>') {
-					++firstVal;
-					curr = value.at(firstVal);
-				}
-				Quest2::Internal::Group g{};
-				g.softerThan = value.at(firstVal) == '<';
-				g.values = std::make_pair(std::stoi(value.substr(0, firstVal)), std::stoi(value.substr(firstVal + 1, value.size())));
-				return g;
-			}) | std::ranges::to<std::vector>();
-		}
+Quest2::Quest2() : BaseQuest{ 2026, 2 } {}
+
+auto [[nodiscard]] Quest2::solution1(const std::string& p) const noexcept -> std::expected<u32, QuestUnimplemented> {
+	auto problem = parseFileCSV(p, " ") | std::ranges::views::transform(
+		[](const std::vector<std::string>& line) -> std::vector<Q2Helpers::Group> {
+		return line | std::ranges::views::transform([](const std::string& value) -> Q2Helpers::Group {
+			u32 firstVal = 0;
+			char curr = value.at(firstVal);
+			while (curr != '<' && curr != '>') {
+				++firstVal;
+				curr = value.at(firstVal);
+			}
+			Q2Helpers::Group g{};
+			g.softerThan = value.at(firstVal) == '<';
+			g.values = std::make_pair(std::stoi(value.substr(0, firstVal)), std::stoi(value.substr(firstVal + 1, value.size())));
+			return g;
+		}) | std::ranges::to<std::vector>();
+	}
 	);
+#ifdef _DEBUG
 	std::println("problem 2026, q2, p1:");
+#endif
 	u32 accum = 0;
 	for (const auto& line : problem) {
 		u32 lineAccum = 0;
-		auto orderedMap = Quest2::Internal::harderFrequency(line);
+		auto orderedMap = Q2Helpers::harderFrequency(line);
 		for (const auto [k, v] : orderedMap) {
 			lineAccum = (lineAccum * 10) + v;
 		}
@@ -42,34 +47,34 @@ auto [[nodiscard]] Quest2::solution1() -> u32 {
 #endif
 		accum += lineAccum;
 	}
-	std::println("\ttime p1: {}", t.getElapsedSinceConstruction());
 	return accum;
 }
 
-auto [[nodiscard]] Quest2::solution2() -> u64 {
-	Timer::Timer t{};
-	auto problem = parseFileCSV(readProblemFile(2026, 2, 2), " ") | std::ranges::views::transform(
-		[](const std::vector<std::string>& line) -> std::vector<Quest2::Internal::Group> {
-		return line | std::ranges::views::transform([](const std::string& value) -> Quest2::Internal::Group {
+auto [[nodiscard]] Quest2::solution2(const std::string& p) const noexcept -> std::expected<u64, QuestUnimplemented> {
+	auto problem = parseFileCSV(p, " ") | std::ranges::views::transform(
+		[](const std::vector<std::string>& line) -> std::vector<Q2Helpers::Group> {
+		return line | std::ranges::views::transform([](const std::string& value) -> Q2Helpers::Group {
 			u32 firstVal = 0;
 			char curr = value.at(firstVal);
 			while (curr != '<' && curr != '>') {
 				++firstVal;
 				curr = value.at(firstVal);
 			}
-			Quest2::Internal::Group g{};
+			Q2Helpers::Group g{};
 			g.softerThan = value.at(firstVal) == '<';
 			g.values = std::make_pair(std::stoi(value.substr(0, firstVal)), std::stoi(value.substr(firstVal + 1, value.size())));
 			return g;
 		}) | std::ranges::to<std::vector>();
 	}
 	);
+#ifdef _DEBUG
 	std::println("problem 2026, q2, p2:");
+#endif
 	u64 accum = 0;
 	for (const auto& line : problem) {
 		u32 lineAccum = 0;
-		auto map = Quest2::Internal::harderMap(line);
-		Quest2::Internal::refineHarderMap(map);
+		auto map = Q2Helpers::harderMap(line);
+		Q2Helpers::refineHarderMap(map);
 		std::vector<u32> ordered{};
 		ordered.reserve(map.size());
 		for (const auto [k, v] : map) {
@@ -90,34 +95,34 @@ auto [[nodiscard]] Quest2::solution2() -> u64 {
 #endif
 		accum += lineAccum;
 	}
-	std::println("\ttime p2: {}", t.getElapsedSinceConstruction());
 	return accum;
 }
 
-auto [[nodiscard]] Quest2::solution3() -> u64 { // this is the same as p2 but the p3 file
-	Timer::Timer t{};
-	auto problem = parseFileCSV(readProblemFile(2026, 2, 3), " ") | std::ranges::views::transform(
-		[](const std::vector<std::string>& line) -> std::vector<Quest2::Internal::Group> {
-		return line | std::ranges::views::transform([](const std::string& value) -> Quest2::Internal::Group {
+auto [[nodiscard]] Quest2::solution3(const std::string& p) const noexcept -> std::expected<u64, QuestUnimplemented> { // this is the same as p2 but the p3 file
+	auto problem = parseFileCSV(p, " ") | std::ranges::views::transform(
+		[](const std::vector<std::string>& line) -> std::vector<Q2Helpers::Group> {
+		return line | std::ranges::views::transform([](const std::string& value) -> Q2Helpers::Group {
 			u32 firstVal = 0;
 			char curr = value.at(firstVal);
 			while (curr != '<' && curr != '>') {
 				++firstVal;
 				curr = value.at(firstVal);
 			}
-			Quest2::Internal::Group g{};
+			Q2Helpers::Group g{};
 			g.softerThan = value.at(firstVal) == '<';
 			g.values = std::make_pair(std::stoi(value.substr(0, firstVal)), std::stoi(value.substr(firstVal + 1, value.size())));
 			return g;
 		}) | std::ranges::to<std::vector>();
 	}
 	);
+#ifdef _DEBUG
 	std::println("problem 2026, q2, p3:");
+#endif
 	u64 accum = 0;
 	for (const auto& line : problem) {
 		u32 lineAccum = 0;
-		auto map = Quest2::Internal::harderMap(line);
-		Quest2::Internal::refineHarderMap(map);
+		auto map = Q2Helpers::harderMap(line);
+		Q2Helpers::refineHarderMap(map);
 		std::vector<u32> ordered{};
 		ordered.reserve(map.size());
 		for (const auto [k, v] : map) {
@@ -138,12 +143,11 @@ auto [[nodiscard]] Quest2::solution3() -> u64 { // this is the same as p2 but th
 #endif
 		accum += lineAccum;
 	}
-	std::println("\ttime p3: {}", t.getElapsedSinceConstruction());
 	return accum;
 }
 
-auto Quest2::Internal::harderFrequency(const std::vector<Quest2::Internal::Group>& groups) -> std::map<u32, u32> {
-	const auto freq = Quest2::Internal::unorderedHarderFrequency(groups);
+auto Q2Helpers::harderFrequency(const std::vector<Q2Helpers::Group>& groups) -> std::map<u32, u32> {
+	const auto freq = Q2Helpers::unorderedHarderFrequency(groups);
 	std::map<u32, u32> order{};
 	for (auto& [k, v] : freq) {
 		order.emplace(v, k); // works so long as there's no hardness ties. otherwise overwrites.
@@ -151,7 +155,7 @@ auto Quest2::Internal::harderFrequency(const std::vector<Quest2::Internal::Group
 	return order;
 }
 
-auto Quest2::Internal::unorderedHarderFrequency(const std::vector<Quest2::Internal::Group>& groups) -> std::unordered_map<u32, u32> {
+auto Q2Helpers::unorderedHarderFrequency(const std::vector<Q2Helpers::Group>& groups) -> std::unordered_map<u32, u32> {
 	std::unordered_map<u32, u32> freq{};
 	for (const auto& group : groups) {
 		if (freq.find(group.values.first) == freq.end()) {
@@ -165,7 +169,7 @@ auto Quest2::Internal::unorderedHarderFrequency(const std::vector<Quest2::Intern
 	return freq;
 }
 
-auto Quest2::Internal::harderMap(const std::vector<Quest2::Internal::Group>& groups) -> std::unordered_map<u32, std::set<u32>> {
+auto Q2Helpers::harderMap(const std::vector<Q2Helpers::Group>& groups) -> std::unordered_map<u32, std::set<u32>> {
 	std::unordered_map<u32, std::set<u32>> freq{};
 	for (const auto& group : groups) {
 		if (freq.find(group.values.first) == freq.end()) {
@@ -186,7 +190,7 @@ auto Quest2::Internal::harderMap(const std::vector<Quest2::Internal::Group>& gro
 }
 
 // overkill for p2 (only 2 of the keys will have the same length. one of those is missing a rule)
-auto Quest2::Internal::refineHarderMap(std::unordered_map<u32, std::set<u32>>& values) -> void {
+auto Q2Helpers::refineHarderMap(std::unordered_map<u32, std::set<u32>>& values) -> void {
 	for (auto& [k, v] : values) {
 		for (const auto& wasHarderThan : v) {
 			v.insert_range(values[wasHarderThan]);

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -50,6 +50,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+      <BuildStlModules>true</BuildStlModules>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,18 +82,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\quests\BaseQuest.cpp" />
+    <ClCompile Include="src\quests\BaseQuest.ixx" />
     <ClCompile Include="src\quests\quest1\q1.cpp" />
-    <ClCompile Include="src\quests\quest1\q1.hpp" />
+    <ClCompile Include="src\quests\quest1\q1.ixx" />
     <ClCompile Include="src\quests\quest2\q2.cpp" />
+    <ClCompile Include="src\quests\quest3\q3.cpp" />
+    <ClCompile Include="src\quests\quest3\q3.ixx" />
     <ClCompile Include="src\utils\FileReadUtils.cpp" />
     <ClCompile Include="src\utils\Timer.cpp" />
+    <ClCompile Include="src\utils\UtilsInterfaceModule.ixx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\quests\quest2\q2.hpp" />
-    <ClInclude Include="src\utils\Casts.hpp" />
-    <ClInclude Include="src\utils\FileReadUtils.hpp" />
-    <ClInclude Include="src\utils\PrimitiveTypes.hpp" />
-    <ClInclude Include="src\utils\Timer.hpp" />
+    <ClCompile Include="src\quests\quest2\q2.ixx">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <ClCompile Include="src\utils\Casts.ixx">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <ClCompile Include="src\utils\FileReadUtils.ixx">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <ClCompile Include="src\utils\PrimitiveTypes.ixx">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <ClCompile Include="src\utils\Timer.ixx">
+      <FileType>Document</FileType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -103,6 +121,7 @@
     <Text Include="data\everybody_codes_e2026_q01_p3.txt" />
     <Text Include="data\everybody_codes_e2026_q02_p1.txt" />
     <Text Include="data\everybody_codes_e2026_q02_p2.txt" />
+    <Text Include="data\everybody_codes_e2026_q02_p3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

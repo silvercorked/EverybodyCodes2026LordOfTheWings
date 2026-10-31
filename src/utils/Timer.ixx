@@ -1,7 +1,10 @@
-#pragma once
 
-#include <chrono>
+export module Utils.Timer;
 
+import <chrono>;
+import <string>;
+
+export
 namespace Timer {
 	template <typename T>
 	concept Timer_SupportedClock = std::same_as<T, std::chrono::steady_clock> || std::same_as<T, std::chrono::system_clock>

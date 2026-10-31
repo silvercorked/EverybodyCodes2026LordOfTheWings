@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\quests\quest1\q1.hpp">
+    <ClCompile Include="src\quests\quest1\q1.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Timer.cpp">
@@ -33,23 +33,36 @@
     <ClCompile Include="src\quests\quest2\q2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\utils\Timer.hpp">
+    <ClCompile Include="src\quests\BaseQuest.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\quests\BaseQuest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\UtilsInterfaceModule.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\Timer.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\FileReadUtils.hpp">
+    </ClCompile>
+    <ClCompile Include="src\utils\FileReadUtils.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\Casts.hpp">
+    </ClCompile>
+    <ClCompile Include="src\utils\PrimitiveTypes.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\PrimitiveTypes.hpp">
+    </ClCompile>
+    <ClCompile Include="src\quests\quest2\q2.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\quests\quest2\q2.hpp">
+    </ClCompile>
+    <ClCompile Include="src\utils\Casts.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="src\quests\quest3\q3.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\quests\quest3\q3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="EverybodyCodes2026LordOfTheWings.slnx" />
@@ -61,6 +74,7 @@
     <Text Include="data\everybody_codes_e2026_q01_p2.txt" />
     <Text Include="data\everybody_codes_e2026_q01_p3.txt" />
     <Text Include="data\everybody_codes_e2026_q02_p1.txt" />
+    <Text Include="data\everybody_codes_e2026_q02_p3.txt" />
     <Text Include="data\everybody_codes_e2026_q02_p2.txt" />
   </ItemGroup>
 </Project>
