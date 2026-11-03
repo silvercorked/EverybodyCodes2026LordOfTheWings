@@ -21,24 +21,12 @@ auto [[nodiscard]] FileReadUtils::readFile(const std::filesystem::path& path) ->
 	return ss.str();
 }
 
-auto [[nodiscard]] FileReadUtils::readFileCSL(const std::filesystem::path& path) -> std::expected<std::vector<std::string>, std::string> {
-	auto fileOut = readFile(path);
-	if (fileOut.has_value()) {
-		return parseFileCSL(fileOut.value());
-	}
-	return std::unexpected(fileOut.error());
-}
-
-auto [[nodiscard]] FileReadUtils::readFileCSV(const std::filesystem::path& path) -> std::expected<std::vector<std::vector<std::string>>, std::string> {
-	auto fileOut = readFile(path);
-	if (fileOut.has_value()) {
-		return parseFileCSV(fileOut.value());
-	}
-	return std::unexpected(fileOut.error());
-}
-
 auto [[nodiscard]] FileReadUtils::readProblemFile(u32 year, u32 quest, u32 part) -> std::expected<std::string, std::string> {
-	return readFile(std::format("data/everybody_codes_e{}_q{:02d}_p{}.txt", year, quest, part));
+	const auto result = readFile(std::format("data/everybody_codes_e{}_q{:02d}_p{}.txt", year, quest, part));
+	if (!result.has_value()) {
+		return std::unexpected(std::format("Bad Parse! {}", result.error()));
+	}
+	return result.value();
 }
 
 auto [[nodiscard]] FileReadUtils::parseFileCSL(std::string_view fileContents, std::string_view delim) -> std::vector<std::string> {

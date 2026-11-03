@@ -17,9 +17,9 @@ static constexpr auto shouldDisplay(const u32 questNumber) -> bool {
 static constexpr auto printResults = []<typename ...ResultTypes>(const BaseQuest<ResultTypes...>& q) -> void {
 	auto results = q.getSolutions();
 	auto times = q.timeSolutions();
-	std::println("out 1: {} | time: {}", times[0], std::get<0>(results));
-	std::println("out 2: {} | time: {}", times[1], std::get<1>(results));
-	std::println("out 3: {} | time: {}", times[2], std::get<2>(results));
+	std::println("out 1: {} | time: {}", std::get<0>(results), times[0]);
+	std::println("out 2: {} | time: {}", std::get<1>(results), times[1]);
+	std::println("out 3: {} | time: {}", std::get<2>(results), times[2]);
 };
 
 template <u32 i>
@@ -36,7 +36,8 @@ static auto runEachQuest() -> void {
 
 template <typename ...Quests>
 static auto runQuests() -> void {
-	runEachQuest<0, Quests...>();
+	// CurrentQuest counts quest to end on, quests are numbered starting at 1
+	runEachQuest<1, Quests...>();
 }
 
 auto main() -> int {
